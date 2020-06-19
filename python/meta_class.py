@@ -40,6 +40,7 @@ def main():
 	L.append(1)
 	L.add(2)
 	print(L)
+	print(L)
 
 
 main()
