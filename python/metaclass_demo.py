@@ -1,5 +1,7 @@
 class ModelMetaclass(type):
 	def __new__(cls, name, bases, attrs):
+		print('cls',cls)
+		print('name',name)
 		print('bases',bases)
 		print('attrs',attrs)
 		if name == 'Model':
@@ -9,6 +11,7 @@ class ModelMetaclass(type):
 			if isinstance(v, Field):
 				print('Found mapping:%s==>%s' % (k, v))
 				mappings[k] = v
+				
 		for k in mappings.keys():
 			attrs.pop(k)
 		attrs['__table__'] = name
@@ -19,6 +22,8 @@ class ModelMetaclass(type):
 class Model(dict, metaclass=ModelMetaclass):
 	
 	def __init__(self, **kw):
+		print('Model')
+		print('kw',kw)
 		super(Model, self).__init__(**kw)
 	
 	def __getattr__(self, key):
@@ -68,6 +73,12 @@ class User(Model):
 	name = StringField('username')
 	email = StringField('email')
 	password = StringField('password')
+	
+	def __new__(cls, *args, **kwargs):
+		print('User')
+		print('args',args)
+		print('kwargs',kwargs)
+		return super(User,cls).__new__(cls,*args,**kwargs)
 
 
 def test():
