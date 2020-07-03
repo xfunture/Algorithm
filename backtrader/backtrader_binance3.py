@@ -36,7 +36,7 @@ class TestStrategy(bt.Strategy):
 def runstrategy(argv):
     # Create a cerebro
     cerebro = bt.Cerebro()
-    apikey, secret = read('/home/rick/PycharmProjects/Btc/huobittrade/binance.txt')
+    apikey, secret = read('/home/xiejh/PycharmProjects/Btc/huobittrade/binance.txt')
     # Create broker
     broker_config = {
                 # 'urls': {
