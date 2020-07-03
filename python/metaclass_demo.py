@@ -11,9 +11,11 @@ class ModelMetaclass(type):
 			if isinstance(v, Field):
 				print('Found mapping:%s==>%s' % (k, v))
 				mappings[k] = v
-				
+	
+	
 		for k in mappings.keys():
 			attrs.pop(k)
+			
 		attrs['__table__'] = name
 		attrs['__mappings__'] = mappings
 		return type.__new__(cls, name, bases, attrs)
@@ -74,11 +76,11 @@ class User(Model):
 	email = StringField('email')
 	password = StringField('password')
 	
-	def __new__(cls, *args, **kwargs):
-		print('User')
-		print('args',args)
-		print('kwargs',kwargs)
-		return super(User,cls).__new__(cls,*args,**kwargs)
+	# def __new__(cls, *args, **kwargs):
+	# 	print('User')
+	# 	print('args',args)
+	# 	print('kwargs',kwargs)
+	# 	return super(User,cls).__new__(cls,*args,**kwargs)
 
 
 def test():
